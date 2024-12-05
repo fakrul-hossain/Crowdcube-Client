@@ -1,12 +1,12 @@
 import React, { useContext, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { NavLink, useNavigate } from "react-router-dom";
+import logo from "../../assets/logo.png";
 import { AuthContext } from "../../providers/AuthProvider";
-import { Card, Input, Typography } from "@material-tailwind/react";
 import Swal from "sweetalert2";
 
 const SignUp = () => {
-  const [showPassword, setShowPassword] = useState(false); // Toggle state for password visibility
+  const [showPassword, setShowPassword] = useState(false);
   const { createUser, updateAUser, setUser } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -18,112 +18,121 @@ const SignUp = () => {
     const password = e.target.password.value;
     const img = e.target.img.value;
 
-    const regex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{6,}$/
-;
+    const regex = /^(?=.*[A-Z])(?=.*[a-z]).{6,}$/;
     if (!regex.test(password)) {
       Swal.fire(
-        "Password Incorrect!",
-        '- Must have an Uppercase letter in the password\n- Must have a Lowercase letter in the password  \n- Length must be at least 6 character ',
+        "Password Error",
+        "Password must contain an uppercase letter, a lowercase letter, and be at least 6 characters long.",
         "error"
       );
       return;
     }
 
     createUser(email, password)
-      .then((res) => {
-        Swal.fire("Sign Up Successful", "You are now registered!", "success");
+      .then(() => {
+        Swal.fire("Success", "Registration successful!", "success");
         updateAUser(name, img).then(() => {
-          setUser((previous) => {
-            previous.displayName = name;
-            previous.photoURL = img;
-            return { ...previous };
-          });
+          setUser((prev) => ({
+            ...prev,
+            displayName: name,
+            photoURL: img,
+          }));
           navigate("/");
         });
       })
       .catch((err) => {
-        Swal.fire("Error", "Something went wrong. Please try again.", "error");
+        Swal.fire("Error", err.message, "error");
       });
 
     e.target.reset();
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen" data-aos="zoom-out" data-aos-duration="2000">
-      <Card className="w-96 shadow-lg p-8">
-        <Typography variant="h4" color="blue-gray" className="text-center">
-          Sign Up
-        </Typography>
-        <Typography color="gray" className="mt-2 text-center">
-          Enter your details to register.
-        </Typography>
-        <form onSubmit={handleRegister} className="mt-6">
-          {/* Name Field */}
-          <div className="mb-4">
-            <label className="block mb-1 text-gray-700 font-medium">Name</label>
-            <input
-              name="name"
-              type="text"
-              placeholder="Enter your name"
-              className="w-full px-4 py-2 bg-gray-100 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-              required
-            />
-          </div>
+    <div className="min-h-screen  text-gray-900 flex justify-center">
+      <div className="max-w-screen-xl m-0 sm:m-10 bg-white shadow sm:rounded-lg flex justify-center flex-1">
+        <div className="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
+          <div className="text-center">
+          <NavLink to="/" className="flex  justify-center items-center gap-2 text-xl font-bold text-teal-600">
+            <img src={logo} alt="Crowdcube Logo" className="h-12 w-12" />
+            <span className="hidden sm:inline">Crowdcube</span>
 
-          {/* Email Field */}
-          <div className="mb-4">
-            <label className="block mb-1 text-gray-700 font-medium">Email</label>
-            <input
-              name="email"
-              type="email"
-              placeholder="Enter your email"
-              className="w-full px-4 py-2 bg-gray-100 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-              required
-            />
-          </div>
-
-          {/* Image Link Field */}
-          <div className="mb-4">
-            <label className="block mb-1 text-gray-700 font-medium">Image Link</label>
-            <input
-              name="img"
-              type="text"
-              placeholder="Enter your image link"
-              className="w-full px-4 py-2 bg-gray-100 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-              required
-            />
-          </div>
-
-          {/* Password Field with Toggling */}
-          <div className="mb-6 relative">
-            <label className="block mb-1 text-gray-700 font-medium">Password</label>
-            <input
-              name="password"
-              type={showPassword ? "text" : "password"}
-              placeholder="Enter your password"
-              className="w-full px-4 py-2 bg-gray-100 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-              required
-            />
-            <div
-              className="absolute top-10 right-4 cursor-pointer text-gray-600"
-              onClick={() => setShowPassword(!showPassword)}
-            >
-              {showPassword ? <FaEyeSlash /> : <FaEye />}
-            </div>
-          </div>
-
-          {/* Submit Button */}
-          <button className="w-full py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition">
-            Sign Up
-          </button>
-        </form>
-        <Typography color="gray" className="mt-4 text-center">
-          Already have an account?{" "}
-          <NavLink to="/login" className="text-blue-500 font-medium hover:underline">
-            Log In
           </NavLink>
-        </Typography>
-      </Card>
+          </div>
+          <div className="mt-12 flex flex-col items-center">
+            <h1 className="text-2xl xl:text-3xl font-extrabold">Sign Up</h1>
+            <form onSubmit={handleRegister} className="w-full flex-1 mt-8">
+              <div className="mx-auto max-w-xs">
+                {/* Name Field */}
+                <input
+                  name="name"
+                  type="text"
+                  placeholder="Name"
+                  className="w-full px-8 py-4 rounded-lg bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
+                  required
+                />
+                {/* Email Field */}
+                <input
+                  name="email"
+                  type="email"
+                  placeholder="Email"
+                  className="w-full px-8 py-4 rounded-lg bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
+                  required
+                />
+                {/* Image Field */}
+                <input
+                  name="img"
+                  type="text"
+                  placeholder="Photo URL"
+                  className="w-full px-8 py-4 rounded-lg bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
+                  required
+                />
+                {/* Password Field */}
+                <div className="relative mt-5">
+                  <input
+                    name="password"
+                    type={showPassword ? "text" : "password"}
+                    placeholder="Password"
+                    className="w-full px-8 py-4 rounded-lg bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
+                    required
+                  />
+                  <div
+                    className="absolute top-4 right-4 cursor-pointer text-gray-600"
+                    onClick={() => setShowPassword(!showPassword)}
+                  >
+                    {showPassword ? <FaEyeSlash /> : <FaEye />}
+                  </div>
+                </div>
+                {/* Submit Button */}
+                <button
+                  type="submit"
+                  className="mt-5 tracking-wide font-semibold bg-indigo-500 text-gray-100 w-full py-4 rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
+                >
+                  <span className="ml-3">Sign Up</span>
+                </button>
+                {/* Redirect Link */}
+                <p className="mt-6 text-xs text-gray-600 text-center">
+                  Already have an account?{" "}
+                  <NavLink
+                    to="/login"
+                    className="text-indigo-500 hover:underline"
+                  >
+                    Log In
+                  </NavLink>
+                </p>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div className="flex-1 bg-indigo-100 text-center hidden lg:flex">
+          <div
+            className="m-12 xl:m-16 w-full bg-contain bg-center bg-no-repeat"
+            style={{
+              backgroundImage:
+                "url('https://storage.googleapis.com/devitary-image-host.appspot.com/15848031292911696601-undraw_designer_life_w96d.svg')",
+            }}
+          ></div>
+        </div>
+      </div>
     </div>
   );
 };

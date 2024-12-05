@@ -35,7 +35,7 @@ const Navbar = () => {
   };
 
   const activeLink =
-    "text-teal-600 font-semibold border-b-2 border-teal-600 pb-1 transition-all duration-300 flex items-center gap-2";
+    "text-teal-600 font-semibold border-b-2 border-teal-600 pb-1 transition-all ease-in-out duration-100 flex items-center gap-2";
   const normalLink =
     "text-gray-600 hover:text-teal-600 transition-all duration-300 flex items-center gap-2";
 
@@ -48,9 +48,10 @@ const Navbar = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <NavLink to="/" className="flex items-center gap-2 text-xl font-bold text-teal-600">
-            <img src={logo} alt="Crowdcube Logo" className="h-8 w-8" />
-            Crowdcube
+          <NavLink to="/" className="flex  justify-center items-center gap-2 text-xl font-bold text-teal-600">
+            <img src={logo} alt="Crowdcube Logo" className="h-12 w-12" />
+            <span className="hidden sm:inline">Crowdcube</span>
+
           </NavLink>
 
           {/* Desktop Menu */}
@@ -110,7 +111,7 @@ const Navbar = () => {
                 />
                 {/* Dropdown Menu */}
                 {isProfileOpen && (
-                  <div className="absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg">
+                  <div className="absolute right-0 z-50 mt-2 w-48 bg-white border rounded shadow-lg">
                     <div className="p-2">
                       <p className="text-gray-700 text-sm">{user.displayName}</p>
                     </div>
