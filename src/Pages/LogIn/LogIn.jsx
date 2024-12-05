@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Swal from "sweetalert2";
 
 const LogIn = () => {
@@ -8,6 +9,7 @@ const LogIn = () => {
   const location = useLocation();
   const from = location.state?.from || "/";
   const [email, setEmail] = useState("");
+  const [passwordType, setPasswordType] = useState("password"); // Password toggle state
 
   const { signInUser, signInWithGoogle } = useContext(AuthContext);
 
@@ -48,6 +50,10 @@ const LogIn = () => {
       .catch((err) => console.log(err));
   };
 
+  const togglePasswordVisibility = () => {
+    setPasswordType(passwordType === "password" ? "text" : "password");
+  };
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-50">
       <div className="w-full max-w-md bg-white p-8 rounded-2xl shadow-lg">
@@ -70,17 +76,29 @@ const LogIn = () => {
               required
             />
           </div>
-          <div>
+          <div className="relative">
             <label className="block text-sm font-medium text-gray-600">
               Password
             </label>
             <input
-              type="password"
+              type={passwordType}
               name="password"
               placeholder="Enter your password"
               className="w-full mt-2 px-4 py-2 border border-gray-200 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
               required
             />
+            {/* Password toggle button */}
+            <button
+              type="button"
+              onClick={togglePasswordVisibility}
+              className="absolute top-10 right-4 text-gray-500 focus:outline-none"
+            >
+              {passwordType === "password" ? (
+                <FaEye/>
+              ) : (
+                <FaEyeSlash/>
+              )}
+            </button>
           </div>
           <button
             type="submit"
