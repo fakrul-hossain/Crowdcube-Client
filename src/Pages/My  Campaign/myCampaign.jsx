@@ -1,6 +1,6 @@
 import React from 'react';
 
-const myCampaign = () => {
+const MyCampaign = () => {
     return (
         <div>
             
@@ -8,4 +8,4 @@ const myCampaign = () => {
     );
 };
 
-export default myCampaign;
+export default MyCampaign;

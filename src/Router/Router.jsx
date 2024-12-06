@@ -7,6 +7,10 @@ import MainLayout from "../layout/MainLayout/MainLayout";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import SignUp from "../Pages/SignUp/SignUp";
 import LogIn from "../Pages/Login/Login";
+import AllCampaign from "../Pages/All Campaign/AllCampaign";
+import MyCampaign from "../Pages/My  Campaign/myCampaign";
+import AddNewCampaign from "../Pages/Add New Campaign/addNewCampaign";
+import MyDonations from "../Pages/My Donations/myDonations";
 
 
 
@@ -24,20 +28,20 @@ const myCreateRoute = createBrowserRouter([
       },
       {
         path: "/allCampaigns",
-        element: <allCampaign/>,
+        element: <AllCampaign/>,
         loader: ()=> fetch('http://localhost:5000/campaigns')
       },
       {
         path: '/addNewCampaign',
-        element:<PrivateRoute><addNewCampaign></addNewCampaign></PrivateRoute>
+        element:<PrivateRoute><AddNewCampaign></AddNewCampaign></PrivateRoute>
     },
       {
         path: '/myCampaigns',
-        element:<PrivateRoute><myCampaign></myCampaign></PrivateRoute>
+        element:<PrivateRoute><MyCampaign></MyCampaign></PrivateRoute>
     },
       {
         path: "/myDonations",
-        element: <PrivateRoute><myDonation></myDonation></PrivateRoute>,
+        element: <PrivateRoute><MyDonations></MyDonations></PrivateRoute>,
       },
       
       {
