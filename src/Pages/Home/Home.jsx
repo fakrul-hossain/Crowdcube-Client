@@ -4,6 +4,7 @@ import { AuthContext } from '../../providers/AuthProvider';
 import { useLoaderData } from 'react-router-dom';
 
 import SimpleSlider from '../../componets/Header/Carousel';
+import AIFeaturesSection from './AIFeaturesSection';
 
 
 
@@ -16,8 +17,8 @@ const Home = () => {
 
     return (
         <div>
-             <SimpleSlider></SimpleSlider>
-             
+             <SimpleSlider/>
+             <AIFeaturesSection/>
            <div className="mt-12">
            </div>
            <test/>
