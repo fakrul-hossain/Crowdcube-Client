@@ -8,7 +8,7 @@ import Navbar from "../../componets/Header/Navbar";
 
 const MainLayout = () => {
   return (
-    <div className="flex flex-col min-h-screen max-w-[1440px] mx-auto overflow-hidden">
+    <div className="flex flex-col min-h-screen  overflow-hidden">
       <ToastContainer />
       <Navbar />
       <div className="flex-1">

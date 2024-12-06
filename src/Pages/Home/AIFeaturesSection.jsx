@@ -39,6 +39,12 @@ const AIFeaturesSection = () => {
 
   return (
     <div className="py-16 space-y-24 sm:px-4">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
+        <h2 className="text-4xl font-extrabold text-gray-900">Discover What Crowdcube Can Do</h2>
+        <p className="mt-4 text-lg text-gray-600">
+          Crowdcube connects ideas, causes, and needs with people eager to make a difference.  Explore our <br />features designed to empower individuals and communities alike.
+        </p>
+      </div>
       {features.map((feature, index) => (
         <div
           key={feature.id}

@@ -42,7 +42,7 @@ const Navbar = () => {
   return (
     <div
       className={`bg-white shadow-md ${
-        isSticky ? "fixed top-0 w-full mx-auto container z-50" : ""
+        isSticky ? "fixed top-0 w-full mx-auto ease-in-out z-50" : ""
       }`}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -61,7 +61,7 @@ const Navbar = () => {
               Home
             </NavLink>
             <NavLink
-              to="/campaigns"
+              to="/allCampaigns"
               className={({ isActive }) => (isActive ? activeLink : normalLink)}
             >
               <FaList />
@@ -70,21 +70,21 @@ const Navbar = () => {
             {user && (
               <>
                 <NavLink
-                  to="/add-campaign"
+                  to="/addNewCampaign"
                   className={({ isActive }) => (isActive ? activeLink : normalLink)}
                 >
                   <FaPlus />
                   Add New Campaign
                 </NavLink>
                 <NavLink
-                  to="/my-campaigns"
+                  to="/myCampaigns"
                   className={({ isActive }) => (isActive ? activeLink : normalLink)}
                 >
                   <FaList />
                   My Campaigns
                 </NavLink>
                 <NavLink
-                  to="/my-donations"
+                  to="/myDonations"
                   className={({ isActive }) => (isActive ? activeLink : normalLink)}
                 >
                   <FaDonate />
@@ -166,7 +166,7 @@ const Navbar = () => {
                 Home
               </NavLink>
               <NavLink
-                to="/campaigns"
+                to="/allCampaigns"
                 className={({ isActive }) => (isActive ? activeLink : normalLink)}
               >
                 <FaList />
@@ -175,21 +175,21 @@ const Navbar = () => {
               {user && (
                 <>
                   <NavLink
-                    to="/add-campaign"
+                    to="/addNewCampaign"
                     className={({ isActive }) => (isActive ? activeLink : normalLink)}
                   >
                     <FaPlus />
                     Add New Campaign
                   </NavLink>
                   <NavLink
-                    to="/my-campaigns"
+                    to="/myCampaigns"
                     className={({ isActive }) => (isActive ? activeLink : normalLink)}
                   >
                     <FaList />
                     My Campaigns
                   </NavLink>
                   <NavLink
-                    to="/my-donations"
+                    to="/myDonations"
                     className={({ isActive }) => (isActive ? activeLink : normalLink)}
                   >
                     <FaDonate />

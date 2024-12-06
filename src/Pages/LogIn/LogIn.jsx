@@ -144,16 +144,7 @@ const LogIn = () => {
             </button>
           </div>
   
-          <p className="mt-6 text-center text-sm text-gray-600">
-            Forgot your password?{" "}
-            <NavLink
-              to="/forgot-password"
-              className="text-teal-600 hover:underline font-medium"
-              state={{ Email: email }}
-            >
-              Reset Password
-            </NavLink>
-          </p>
+          
   
           <p className="mt-4 text-center text-sm text-gray-600">
             Don&apos;t have an account?{" "}
