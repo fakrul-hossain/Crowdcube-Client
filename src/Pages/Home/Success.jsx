@@ -1,11 +1,14 @@
 import React from 'react';
+import { Slide } from 'react-awesome-reveal';
 
 const Success = () => {
   return (
     <section className="bg-teal-900 py-16">
       <div className="max-w-6xl md:w-[600px] lg:w-[800px] p-6 mx-auto px-4 lg:px-8">
-        {/* Section Title */}
-        <div className="text-center mb-12">
+       
+        <Slide>
+ {/* Section Title */}
+ <div className="text-center mb-12">
           <h2 className="text-3xl md:text-5xl font-bold text-white">
             Over a decade of Fundraising Success
           </h2>
@@ -25,6 +28,7 @@ const Success = () => {
             <p className="mt-2 text-gray-300 text-lg md:text-xl">Accredited Investors</p>
           </div>
         </div>
+        </Slide>
       </div>
     </section>
   );

@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
+import { Zoom } from "react-awesome-reveal";
 
 const MyDonations = () => {
   const { user } = useContext(AuthContext); // Get the logged-in user from context
@@ -30,7 +31,9 @@ const MyDonations = () => {
   }
 
   return (
-    <div className="container mx-auto px-4 py-6">
+    
+  <Zoom>
+<div className="container mx-auto px-4 py-6">
     <h1 className="text-2xl font-bold text-teal-700 dark:text-teal-400 text-center mb-6">
       My Donations
     </h1>
@@ -74,7 +77,7 @@ const MyDonations = () => {
       </div>
     )}
   </div>
-  
+  </Zoom>
   );
 };
 

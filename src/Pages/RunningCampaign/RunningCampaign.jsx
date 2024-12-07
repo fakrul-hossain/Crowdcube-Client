@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { FaRegClock, FaCheckCircle, FaTimesCircle } from "react-icons/fa";
+import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
+import { Bounce, Slide, Zoom } from "react-awesome-reveal";
 
 const RunningCampaign = () => {
   const [campaigns, setCampaigns] = useState([]);
-  const navigate = useNavigate();
+
 
   // Fetch running campaigns from the database
   useEffect(() => {
@@ -25,13 +26,16 @@ const RunningCampaign = () => {
 
   return (
     <div className="container mx-auto px-4 py-10">
+      
+      <Slide>
       <h1 className="text-3xl font-bold text-teal-700 dark:text-teal-400 text-center mb-2">
         Running Campaigns
       </h1>
       <p className="text-lg text-gray-700 dark:text-gray-300 text-center mb-8">
         Explore ongoing campaigns and contribute to causes that matter.
       </p>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 ">
+    </Slide>
+     <Zoom> <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 ">
         {campaigns.length > 0 ? (
           campaigns.slice(0, 6).map((campaign) => (
             <div
@@ -89,7 +93,8 @@ const RunningCampaign = () => {
             No running campaigns available at the moment.
           </p>
         )}
-      </div>
+      </div></Zoom>
+     
       <div className="text-center mt-8">
         <Link to={"/campaigns"}>
           <button className="bg-teal-600 dark:bg-teal-500 text-white py-2 px-6 rounded-md hover:bg-teal-700 dark:hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2">

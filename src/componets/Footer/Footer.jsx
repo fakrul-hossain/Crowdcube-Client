@@ -1,6 +1,7 @@
 import React from "react";
 import logo from "../../assets/logo.png";
 import { FaTwitter, FaLinkedin } from 'react-icons/fa';
+import { Bounce, Fade } from "react-awesome-reveal";
 // import { Typography } from "@material-tailwind/react";
 // import { FaFacebook } from "react-icons/fa";
 // import { IoLogoTwitter,IoLogoLinkedin } from "react-icons/io";
@@ -9,7 +10,9 @@ import { FaTwitter, FaLinkedin } from 'react-icons/fa';
 
 const Footer = () => {
   return (
-    <footer className="bg-teal-900 text-white py-12">
+   
+  <Fade>
+     <footer className="bg-teal-900 text-white py-12">
     <div className="container mx-auto px-4">
       <div className="grid grid-cols-1 md:grid-cols-5 gap-8 text-center md:text-left">
         {/* Logo */}
@@ -67,6 +70,7 @@ const Footer = () => {
       </div>
     </div>
   </footer>
+  </Fade>
   );
 };
 

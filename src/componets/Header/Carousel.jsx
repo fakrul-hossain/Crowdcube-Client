@@ -7,6 +7,8 @@ import bannerImg2 from "../../assets/banner_img_1 (2).jpg";
 import bannerImg3 from "../../assets/banner_img_1 (3).jpg";
 import bannerImg4 from "../../assets/banner_img_1 (4).jpg";
 import bannerImg5 from "../../assets/banner_img_1 (5).jpg";
+import { Typewriter } from 'react-simple-typewriter';
+import { Bounce, Slide } from "react-awesome-reveal";
 
 export default function SimpleSlider() {
   var settings = {
@@ -16,7 +18,7 @@ export default function SimpleSlider() {
     dots: true,
     infinite: true,
     fade: true,
-    speed: 800,
+    speed: 4000,
     slidesToShow: 1,
     slidesToScroll: 1,
   };
@@ -73,12 +75,22 @@ export default function SimpleSlider() {
             />
             <div className="absolute top-0 h-full flex flex-col justify-center items-center bg-teal-900 w-full bg-opacity-60 rounded-xl dark:bg-gray-900 dark:bg-opacity-70">
               <h3 className="text-4xl font-semibold text-center text-white dark:text-teal-300">
-                {slide.title}
+                {/* Typewriter effect on the title */}
+                <Typewriter 
+                  words={[slide.title]} 
+                  loop={0}
+                  cursor 
+                  cursorStyle="_" 
+                  typeSpeed={50} 
+                  deleteSpeed={30} 
+                  delaySpeed={1000}
+                />
               </h3>
               <p className="mt-4 text-lg text-center text-white dark:text-teal-200">
                 {slide.description}
               </p>
-              <div className="flex gap-7 mt-12">
+              <Bounce>
+                 <div className="flex gap-7 mt-12">
                 {slide.buttons.map((button, idx) => (
                   <button
                     key={idx}
@@ -92,6 +104,8 @@ export default function SimpleSlider() {
                   </button>
                 ))}
               </div>
+              </Bounce>
+             
             </div>
           </div>
         ))}

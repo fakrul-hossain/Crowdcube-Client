@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
+import { Bounce } from "react-awesome-reveal";
 
 const UpdateCampaign = () => {
   const { user } = useContext(AuthContext);
@@ -65,7 +66,9 @@ const UpdateCampaign = () => {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
+ 
+<Bounce>
+<div className="container mx-auto px-4 py-8">
   <h1 className="text-3xl font-bold text-teal-700 dark:text-teal-400 text-center mb-8">
     Update Campaign
   </h1>
@@ -203,7 +206,7 @@ const UpdateCampaign = () => {
     </div>
   </form>
 </div>
-
+</Bounce>
   );
 };
 

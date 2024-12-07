@@ -1,4 +1,5 @@
 import React from "react";
+import { Slide } from "react-awesome-reveal";
 import { FaLightbulb, FaHandsHelping, FaRocket } from "react-icons/fa";
 
 const AIFeaturesSection = () => {
@@ -39,6 +40,8 @@ const AIFeaturesSection = () => {
 
   return (
     <div className="py-16 space-y-24 sm:px-4">
+      
+      <Slide>
       <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
         <h2 className="text-4xl font-extrabold text-gray-900 dark:text-white">
           Discover What Crowdcube Can Do
@@ -97,6 +100,9 @@ const AIFeaturesSection = () => {
           </div>
         </div>
       ))}
+      </Slide>
+      
+     
     </div>
   );
 };

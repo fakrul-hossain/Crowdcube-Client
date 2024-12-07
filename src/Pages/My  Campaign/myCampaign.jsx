@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import { Bounce, Fade } from "react-awesome-reveal";
 
 const MyCampaign = () => {
   const { user } = useContext(AuthContext);
@@ -67,14 +68,19 @@ const MyCampaign = () => {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-screen">
-        <div className="loader border-t-4 border-b-4 border-teal-500 w-12 h-12 rounded-full animate-spin"></div>
-      </div>
+      
+        <div className="flex items-center justify-center h-screen">
+      <div className="loader border-t-4 border-b-4 border-teal-500 w-12 h-12 rounded-full animate-spin"></div>
+    </div>
+   
+   
     );
   }
 
   return (
-    <div className="container mx-auto px-4 py-6">
+   
+     <Bounce>
+         <div className="container mx-auto px-4 py-6">
     <h1 className="text-2xl font-bold mb-6 text-center text-teal-700 dark:text-teal-400">
       My Campaigns
     </h1>
@@ -142,7 +148,7 @@ const MyCampaign = () => {
       </div>
     )}
   </div>
-  
+     </Bounce>
   );
 };
 
