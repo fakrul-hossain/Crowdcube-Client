@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLoaderData, useNavigate } from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
 
 const AllCampaign = () => {
   const campaigns = useLoaderData(); // Use loaded data directly
@@ -55,12 +55,14 @@ const AllCampaign = () => {
                   {new Date(campaign.deadline).toLocaleDateString()}
                 </td>
                 <td className="whitespace-nowrap px-4 py-2">
+                  <Link to={`/campaignDetails/${campaign._id}`}>
                   <button
-                    onClick={() => navigate(`/campaign/${campaign._id}`)}
+                    // onClick={() => navigate(`/campaign/${campaign._id}`)}
                     className="inline-block rounded bg-teal-600 px-4 py-2 text-xs font-medium text-white hover:bg-teal-700"
                   >
                     See More
                   </button>
+                  </Link>
                 </td>
               </tr>
             ))}

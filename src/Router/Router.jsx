@@ -11,6 +11,7 @@ import AllCampaign from "../Pages/All Campaign/AllCampaign";
 import MyCampaign from "../Pages/My  Campaign/myCampaign";
 import AddNewCampaign from "../Pages/Add New Campaign/addNewCampaign";
 import MyDonations from "../Pages/My Donations/myDonations";
+import CampaignDetails from "../Pages/Campaigns Details/CampaignDetails";
 
 
 
@@ -27,10 +28,16 @@ const myCreateRoute = createBrowserRouter([
         // loader: () => fetch("/data.json"),
       },
       {
-        path: "/allCampaigns",
+        path: "/campaigns",
         element: <AllCampaign/>,
         loader: ()=> fetch('http://localhost:5000/campaigns')
       },
+        {
+          path: "/campaignDetails/:id",
+          element: <PrivateRoute><CampaignDetails /></PrivateRoute>,
+          loader: ({params})=> fetch(`http://localhost:5000/campaigns/${params.id}`)
+        }
+      ,
       {
         path: '/addNewCampaign',
         element:<PrivateRoute><AddNewCampaign></AddNewCampaign></PrivateRoute>

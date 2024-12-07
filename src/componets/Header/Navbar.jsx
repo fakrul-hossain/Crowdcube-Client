@@ -61,7 +61,7 @@ const Navbar = () => {
               Home
             </NavLink>
             <NavLink
-              to="/allCampaigns"
+              to="/campaigns"
               className={({ isActive }) => (isActive ? activeLink : normalLink)}
             >
               <FaList />
@@ -166,7 +166,7 @@ const Navbar = () => {
                 Home
               </NavLink>
               <NavLink
-                to="/allCampaigns"
+                to="/campaigns"
                 className={({ isActive }) => (isActive ? activeLink : normalLink)}
               >
                 <FaList />
