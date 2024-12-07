@@ -22,7 +22,7 @@ export default function SimpleSlider() {
   };
 
   return (
-    <div className="w-[93%] mx-auto mt-4" data-aos="flip-left" data-aos-duration="2000">
+    <div className="w-[93%] container mx-auto mt-4" data-aos="flip-left" data-aos-duration="2000">
       <Slider {...settings}>
         {/* Slide 1 */}
         <div className="h-[600px] w-full rounded-xl overflow-hidden relative">

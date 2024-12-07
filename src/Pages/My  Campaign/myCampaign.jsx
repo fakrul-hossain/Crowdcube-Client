@@ -11,10 +11,22 @@ const MyCampaign = () => {
   // Fetch user's campaigns
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:5000/myCampaigns?email=${user.email}`)
-        .then((res) => res.json())
-        .then((data) => setCampaigns(data))
-        .catch((err) => console.error("Error fetching campaigns:", err));
+      fetch(`http://localhost:5000/campaigns?email=${user.email}`)
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error("Failed to fetch campaigns");
+          }
+          return res.json();
+        })
+        .then((data) => {
+          setCampaigns(data);
+          setLoading(false); // Stop loading after data is fetched
+        })
+        .catch((err) => {
+          console.error("Error fetching campaigns:", err);
+          Swal.fire("Error", "Unable to load campaigns. Please try again later.", "error");
+          setLoading(false);
+        });
     }
   }, [user?.email]);
 
@@ -33,22 +45,25 @@ const MyCampaign = () => {
         fetch(`http://localhost:5000/campaigns/${id}`, {
           method: "DELETE",
         })
-          .then((res) => res.json())
+          .then((res) => {
+            if (!res.ok) {
+              throw new Error("Failed to delete campaign");
+            }
+            return res.json();
+          })
           .then((data) => {
             if (data.deletedCount > 0) {
               Swal.fire("Deleted!", "Your campaign has been deleted.", "success");
-              // Remove the deleted campaign from the UI
-              setCampaigns(campaigns.filter((campaign) => campaign._id !== id));
+              setCampaigns(campaigns.filter((campaign) => campaign._id !== id)); // Update UI
             }
           })
-          .catch((err) => console.error("Error deleting campaign:", err));
+          .catch((err) => {
+            console.error("Error deleting campaign:", err);
+            Swal.fire("Error", "Unable to delete the campaign. Please try again.", "error");
+          });
       }
     });
   };
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 1000); // 1 second delay
-    return () => clearTimeout(timer); // Cleanup timer on component unmount
-  }, []);
 
   if (loading) {
     return (
@@ -58,13 +73,9 @@ const MyCampaign = () => {
     );
   }
 
-
-
   return (
     <div className="container mx-auto px-4 py-6">
-      <h1 className="text-2xl font-bold mb-6 text-center text-teal-700">
-        My Campaigns
-      </h1>
+      <h1 className="text-2xl font-bold mb-6 text-center text-teal-700">My Campaigns</h1>
       {campaigns.length === 0 ? (
         <p className="text-center text-gray-500">You have not added any campaigns yet.</p>
       ) : (
@@ -88,9 +99,7 @@ const MyCampaign = () => {
                   <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
                     {campaign.title}
                   </td>
-                  <td className="whitespace-nowrap px-4 py-2 text-gray-700">
-                    {campaign.type}
-                  </td>
+                  <td className="whitespace-nowrap px-4 py-2 text-gray-700">{campaign.type}</td>
                   <td className="whitespace-nowrap px-4 py-2 text-gray-700">
                     ${campaign.minimumDonation}
                   </td>
@@ -105,11 +114,9 @@ const MyCampaign = () => {
                       Delete
                     </button>
                     <Link to={`/updateCampaign/${campaign._id}`}>
-                    <button
-                      className="inline-block  rounded bg-teal-500 px-4 py-2 text-xs font-medium text-white hover:bg-teal-600"
-                    >
-                      Update
-                    </button>
+                      <button className="inline-block rounded bg-teal-500 px-4 py-2 text-xs font-medium text-white hover:bg-teal-600">
+                        Update
+                      </button>
                     </Link>
                   </td>
                 </tr>
