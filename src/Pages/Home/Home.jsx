@@ -20,7 +20,9 @@ const Home = () => {
     return (
         <div>
              <SimpleSlider/>
-            <RunningCampaign></RunningCampaign>
+           <div className="py-10">
+           <RunningCampaign></RunningCampaign>
+           </div>
              <Success/>
              <AIFeaturesSection/>
            <div className="mt-12">

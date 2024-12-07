@@ -39,10 +39,13 @@ const AIFeaturesSection = () => {
 
   return (
     <div className="py-16 space-y-24 sm:px-4">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
-        <h2 className="text-4xl font-extrabold text-gray-900">Discover What Crowdcube Can Do</h2>
-        <p className="mt-4 text-lg text-gray-600">
-          Crowdcube connects ideas, causes, and needs with people eager to make a difference.  Explore our <br />features designed to empower individuals and communities alike.
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
+        <h2 className="text-4xl font-extrabold text-gray-900 dark:text-white">
+          Discover What Crowdcube Can Do
+        </h2>
+        <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
+          Crowdcube connects ideas, causes, and needs with people eager to make a difference. Explore our <br />
+          features designed to empower individuals and communities alike.
         </p>
       </div>
       {features.map((feature, index) => (
@@ -58,20 +61,20 @@ const AIFeaturesSection = () => {
             }`}
           >
             <div>
-              <div className="flex h-12 w-12 bg-teal-100 items-center justify-center rounded-xl">
+              <div className="flex h-12 w-12 bg-teal-100 dark:bg-teal-800 items-center justify-center rounded-xl">
                 {feature.icon}
               </div>
               <div className="mt-6">
-                <h2 className="text-3xl font-bold tracking-tight text-gray-900">
+                <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
                   {feature.title}
                 </h2>
-                <p className="mt-4 text-lg text-gray-600">
+                <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
                   {feature.description}
                 </p>
                 <div className="mt-6">
                   <a
                     href={feature.buttonLink}
-                    className="inline-flex rounded-lg bg-teal-600 px-4 py-1.5 text-base font-semibold leading-7 text-white shadow-sm ring-1 ring-teal-600 hover:bg-teal-700 hover:ring-teal-700"
+                    className="inline-flex rounded-lg bg-teal-600 px-4 py-1.5 text-base font-semibold leading-7 text-white shadow-sm ring-1 ring-teal-600 hover:bg-teal-700 hover:ring-teal-700 focus:outline-none dark:bg-teal-700 dark:ring-teal-500 dark:hover:bg-teal-600"
                   >
                     {feature.buttonText}
                   </a>
@@ -88,7 +91,7 @@ const AIFeaturesSection = () => {
               <img
                 alt={feature.title}
                 src={feature.imageSrc}
-                className="w-full max-w-full h-auto rounded-xl shadow-xl object-cover ring-1 ring-black ring-opacity-5"
+                className="w-full max-w-full h-auto rounded-xl shadow-xl object-cover ring-1 ring-black ring-opacity-5 dark:ring-gray-700"
               />
             </div>
           </div>
