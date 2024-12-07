@@ -8,11 +8,12 @@ const MyCampaign = () => {
   const { user } = useContext(AuthContext);
   const [loading, setLoading] = useState(true);
   const [campaigns, setCampaigns] = useState([]);
+  console.log(user.email)
 
   // Fetch user's campaigns
   useEffect(() => {
     if (user?.email) {
-      fetch(`https://crowdcube-server-xi.vercel.app/campaigns?email=${user.email}`)
+      fetch(`https://crowdcube-server-xi.vercel.app/myCampaigns?email=${user.email}`)
         .then((res) => {
           if (!res.ok) {
             throw new Error("Failed to fetch campaigns");
