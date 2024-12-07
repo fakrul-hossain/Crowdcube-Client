@@ -66,143 +66,144 @@ const UpdateCampaign = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold text-teal-700 text-center mb-8">
-        Update Campaign
-      </h1>
-      <form
-        onSubmit={handleSubmit}
-        className="max-w-3xl mx-auto bg-white shadow-lg p-6 rounded-lg"
-      >
-        {/* Two-column Layout */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          {/* Campaign Title */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Campaign Title
-            </label>
-            <input
-              type="text"
-              name="title"
-              value={formData.title}
-              onChange={handleChange}
-              required
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg"
-            />
-          </div>
+  <h1 className="text-3xl font-bold text-teal-700 dark:text-teal-400 text-center mb-8">
+    Update Campaign
+  </h1>
+  <form
+    onSubmit={handleSubmit}
+    className="max-w-3xl mx-auto bg-white dark:bg-gray-800 shadow-lg p-6 rounded-lg"
+  >
+    {/* Two-column Layout */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      {/* Campaign Title */}
+      <div>
+        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+          Campaign Title
+        </label>
+        <input
+          type="text"
+          name="title"
+          value={formData.title}
+          onChange={handleChange}
+          required
+          className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-200"
+        />
+      </div>
 
-          {/* Campaign Type */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Campaign Type
-            </label>
-            <input
-              type="text"
-              name="type"
-              value={formData.type}
-              onChange={handleChange}
-              required
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg"
-            />
-          </div>
+      {/* Campaign Type */}
+      <div>
+        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+          Campaign Type
+        </label>
+        <input
+          type="text"
+          name="type"
+          value={formData.type}
+          onChange={handleChange}
+          required
+          className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-200"
+        />
+      </div>
 
-          {/* Minimum Donation */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Minimum Donation ($)
-            </label>
-            <input
-              type="number"
-              name="minimumDonation"
-              value={formData.minimumDonation}
-              onChange={handleChange}
-              required
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg"
-            />
-          </div>
+      {/* Minimum Donation */}
+      <div>
+        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+          Minimum Donation ($)
+        </label>
+        <input
+          type="number"
+          name="minimumDonation"
+          value={formData.minimumDonation}
+          onChange={handleChange}
+          required
+          className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-200"
+        />
+      </div>
 
-          {/* Deadline */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Deadline
-            </label>
-            <input
-              type="date"
-              name="deadline"
-              value={formData.deadline.split("T")[0]} // Format date for input
-              onChange={handleChange}
-              required
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg"
-            />
-          </div>
+      {/* Deadline */}
+      <div>
+        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+          Deadline
+        </label>
+        <input
+          type="date"
+          name="deadline"
+          value={formData.deadline.split("T")[0]} // Format date for input
+          onChange={handleChange}
+          required
+          className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-200"
+        />
+      </div>
 
-          {/* User Name (Read-Only) */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700">
-              User Name
-            </label>
-            <input
-              type="text"
-              value={user?.displayName || "Anonymous"}
-              readOnly
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-100 cursor-not-allowed"
-            />
-          </div>
+      {/* User Name (Read-Only) */}
+      <div>
+        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+          User Name
+        </label>
+        <input
+          type="text"
+          value={user?.displayName || "Anonymous"}
+          readOnly
+          className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-100 dark:bg-gray-600 cursor-not-allowed text-gray-900 dark:text-gray-300"
+        />
+      </div>
 
-          {/* User Email (Read-Only) */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700">
-              User Email
-            </label>
-            <input
-              type="email"
-              value={user?.email || "N/A"}
-              readOnly
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-100 cursor-not-allowed"
-            />
-          </div>
-        </div>
-
-        {/* Image Field (Full Width) */}
-        <div className="mt-6">
-          <label className="block text-sm font-medium text-gray-700">
-            Campaign Image URL
-          </label>
-          <input
-            type="text"
-            name="image"
-            value={formData.image}
-            onChange={handleChange}
-            required
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg"
-          />
-        </div>
-
-        {/* Description (Full Width) */}
-        <div className="mt-6">
-          <label className="block text-sm font-medium text-gray-700">
-            Campaign Description
-          </label>
-          <textarea
-            name="description"
-            value={formData.description}
-            onChange={handleChange}
-            required
-            rows="4"
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg"
-          ></textarea>
-        </div>
-
-        {/* Submit Button */}
-        <div className="text-center mt-6">
-          <button
-            type="submit"
-            className="px-6 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700"
-          >
-            Update Campaign
-          </button>
-        </div>
-      </form>
+      {/* User Email (Read-Only) */}
+      <div>
+        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+          User Email
+        </label>
+        <input
+          type="email"
+          value={user?.email || "N/A"}
+          readOnly
+          className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-100 dark:bg-gray-600 cursor-not-allowed text-gray-900 dark:text-gray-300"
+        />
+      </div>
     </div>
+
+    {/* Image Field (Full Width) */}
+    <div className="mt-6">
+      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+        Campaign Image URL
+      </label>
+      <input
+        type="text"
+        name="image"
+        value={formData.image}
+        onChange={handleChange}
+        required
+        className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-200"
+      />
+    </div>
+
+    {/* Description (Full Width) */}
+    <div className="mt-6">
+      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+        Campaign Description
+      </label>
+      <textarea
+        name="description"
+        value={formData.description}
+        onChange={handleChange}
+        required
+        rows="4"
+        className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-200"
+      ></textarea>
+    </div>
+
+    {/* Submit Button */}
+    <div className="text-center mt-6">
+      <button
+        type="submit"
+        className="px-6 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 dark:bg-teal-500 dark:hover:bg-teal-400"
+      >
+        Update Campaign
+      </button>
+    </div>
+  </form>
+</div>
+
   );
 };
 

@@ -56,10 +56,10 @@ const LogIn = () => {
 
   return (
     
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
-    <div className="max-w-screen-xl m-0 sm:m-10 bg-white shadow sm:rounded-lg flex flex-col lg:flex-row justify-center flex-1">
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
+    <div className="max-w-screen-xl m-0 sm:m-10 bg-white dark:bg-gray-800 shadow sm:rounded-lg flex flex-col lg:flex-row justify-center flex-1">
       {/* Image Section */}
-      <div className="flex-1 bg-indigo-100 text-center hidden lg:flex">
+      <div className="flex-1 bg-indigo-100 dark:bg-indigo-900 text-center hidden lg:flex">
         <div
           className="m-12 xl:m-16 w-full bg-contain bg-center bg-no-repeat"
           style={{
@@ -71,38 +71,40 @@ const LogIn = () => {
   
       {/* Form Section */}
       <div className="flex-1 flex items-center justify-center p-8">
-        <div className="w-full max-w-md bg-white p-8 rounded-2xl shadow-lg">
-          <h2 className="text-3xl font-semibold text-center text-gray-800">Log In</h2>
-          <p className="text-sm text-center text-gray-500 mt-2">
+        <div className="w-full max-w-md bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg">
+          <h2 className="text-3xl font-semibold text-center text-gray-800 dark:text-gray-100">
+            Log In
+          </h2>
+          <p className="text-sm text-center text-gray-500 dark:text-gray-400 mt-2">
             Enter your details to log in.
           </p>
   
           <form onSubmit={handleLogin} className="mt-8 space-y-6">
             <div>
-              <label className="block text-sm font-medium text-gray-600">Email</label>
+              <label className="block text-sm font-medium text-gray-600 dark:text-gray-300">Email</label>
               <input
                 type="email"
                 name="email"
                 placeholder="Enter your email"
-                className="w-full mt-2 px-4 py-2 border border-gray-200 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+                className="w-full mt-2 px-4 py-2 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-gray-700 dark:text-white"
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />
             </div>
             <div className="relative">
-              <label className="block text-sm font-medium text-gray-600">Password</label>
+              <label className="block text-sm font-medium text-gray-600 dark:text-gray-300">Password</label>
               <input
                 type={passwordType}
                 name="password"
                 placeholder="Enter your password"
-                className="w-full mt-2 px-4 py-2 border border-gray-200 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+                className="w-full mt-2 px-4 py-2 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-gray-700 dark:text-white"
                 required
               />
               {/* Password toggle button */}
               <button
                 type="button"
                 onClick={togglePasswordVisibility}
-                className="absolute top-10 right-4 text-gray-500 focus:outline-none"
+                className="absolute top-10 right-4 text-gray-500 dark:text-gray-400 focus:outline-none"
               >
                 {passwordType === "password" ? <FaEye /> : <FaEyeSlash />}
               </button>
@@ -118,7 +120,7 @@ const LogIn = () => {
           <div className="mt-4">
             <button
               onClick={handleGoogleSignIn}
-              className="w-full max-w-xs font-bold shadow-sm rounded-lg py-3 bg-indigo-100 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out hover:shadow-lg focus:outline-none focus:shadow-sm focus:shadow-outline mx-auto"
+              className="w-full max-w-xs font-bold shadow-sm rounded-lg py-3 bg-indigo-100 dark:bg-indigo-700 text-gray-800 dark:text-gray-100 flex items-center justify-center transition-all duration-300 ease-in-out hover:shadow-lg focus:outline-none focus:shadow-sm focus:shadow-outline mx-auto"
             >
               <div className="bg-white p-2 rounded-full">
                 <svg className="w-5 h-5" viewBox="0 0 533.5 544.3">
@@ -144,13 +146,11 @@ const LogIn = () => {
             </button>
           </div>
   
-          
-  
-          <p className="mt-4 text-center text-sm text-gray-600">
+          <p className="mt-4 text-center text-sm text-gray-600 dark:text-gray-400">
             Don&apos;t have an account?{" "}
             <NavLink
               to="/register"
-              className="text-teal-600 hover:underline font-medium"
+              className="text-teal-600 dark:text-teal-400 hover:underline font-medium"
             >
               Sign Up
             </NavLink>
@@ -159,6 +159,7 @@ const LogIn = () => {
       </div>
     </div>
   </div>
+  
   
   );
 };

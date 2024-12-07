@@ -48,21 +48,23 @@ const SignUp = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
-  <div className="max-w-screen-xl m-0 sm:m-10 bg-white shadow sm:rounded-lg flex flex-col lg:flex-row justify-center flex-1">
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
+  <div className="max-w-screen-xl m-0 sm:m-10 bg-white dark:bg-gray-800 shadow sm:rounded-lg flex flex-col lg:flex-row justify-center flex-1">
     {/* Form Section */}
     <div className="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
       <div className="text-center">
         <NavLink
           to="/"
-          className="flex justify-center items-center gap-2 text-xl font-bold text-teal-600"
+          className="flex justify-center items-center gap-2 text-xl font-bold text-teal-600 dark:text-teal-400"
         >
           <img src={logo} alt="Crowdcube Logo" className="h-12 w-12" />
           <span className="hidden sm:inline">Crowdcube</span>
         </NavLink>
       </div>
       <div className="mt-12 flex flex-col items-center">
-        <h1 className="text-2xl xl:text-3xl font-extrabold">Sign Up</h1>
+        <h1 className="text-2xl xl:text-3xl font-extrabold text-gray-900 dark:text-gray-100">
+          Sign Up
+        </h1>
         <form onSubmit={handleRegister} className="w-full flex-1 mt-8">
           <div className="mx-auto max-w-xs">
             {/* Name Field */}
@@ -70,7 +72,7 @@ const SignUp = () => {
               name="name"
               type="text"
               placeholder="Name"
-              className="w-full px-8 py-4 rounded-lg bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
+              className="w-full px-8 py-4 rounded-lg bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400 text-sm focus:outline-none focus:border-gray-400 dark:focus:border-gray-500 focus:bg-white dark:focus:bg-gray-600"
               required
             />
             {/* Email Field */}
@@ -78,7 +80,7 @@ const SignUp = () => {
               name="email"
               type="email"
               placeholder="Email"
-              className="w-full px-8 py-4 rounded-lg bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
+              className="w-full px-8 py-4 rounded-lg bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400 text-sm focus:outline-none focus:border-gray-400 dark:focus:border-gray-500 focus:bg-white dark:focus:bg-gray-600 mt-5"
               required
             />
             {/* Image Field */}
@@ -86,7 +88,7 @@ const SignUp = () => {
               name="img"
               type="text"
               placeholder="Photo URL"
-              className="w-full px-8 py-4 rounded-lg bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
+              className="w-full px-8 py-4 rounded-lg bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400 text-sm focus:outline-none focus:border-gray-400 dark:focus:border-gray-500 focus:bg-white dark:focus:bg-gray-600 mt-5"
               required
             />
             {/* Password Field */}
@@ -95,11 +97,11 @@ const SignUp = () => {
                 name="password"
                 type={showPassword ? "text" : "password"}
                 placeholder="Password"
-                className="w-full px-8 py-4 rounded-lg bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
+                className="w-full px-8 py-4 rounded-lg bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400 text-sm focus:outline-none focus:border-gray-400 dark:focus:border-gray-500 focus:bg-white dark:focus:bg-gray-600"
                 required
               />
               <div
-                className="absolute top-4 right-4 cursor-pointer text-gray-600"
+                className="absolute top-4 right-4 cursor-pointer text-gray-600 dark:text-gray-300"
                 onClick={() => setShowPassword(!showPassword)}
               >
                 {showPassword ? <FaEyeSlash /> : <FaEye />}
@@ -108,16 +110,16 @@ const SignUp = () => {
             {/* Submit Button */}
             <button
               type="submit"
-              className="mt-5 tracking-wide font-semibold bg-teal-600 text-gray-100 w-full py-4 rounded-lg hover:bg-teal-400 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
+              className="mt-5 tracking-wide font-semibold bg-teal-600 text-gray-100 w-full py-4 rounded-lg hover:bg-teal-400 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none dark:bg-teal-500 dark:hover:bg-teal-400"
             >
               <span className="ml-3">Sign Up</span>
             </button>
             {/* Redirect Link */}
-            <p className="mt-4 text-center text-sm text-gray-600">
+            <p className="mt-4 text-center text-sm text-gray-600 dark:text-gray-400">
               Already have an account?{" "}
               <NavLink
                 to="/login"
-                className="text-teal-600 hover:underline font-medium"
+                className="text-teal-600 hover:underline font-medium dark:text-teal-400"
               >
                 Log In
               </NavLink>
@@ -139,6 +141,7 @@ const SignUp = () => {
     </div>
   </div>
 </div>
+
 
   );
 };

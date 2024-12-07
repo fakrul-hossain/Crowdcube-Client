@@ -75,57 +75,74 @@ const MyCampaign = () => {
 
   return (
     <div className="container mx-auto px-4 py-6">
-      <h1 className="text-2xl font-bold mb-6 text-center text-teal-700">My Campaigns</h1>
-      {campaigns.length === 0 ? (
-        <p className="text-center text-gray-500">You have not added any campaigns yet.</p>
-      ) : (
-        <div className="overflow-x-auto bg-gray-50 p-4 rounded-lg shadow-lg">
-          <table className="min-w-full divide-y-2 divide-gray-200 bg-white text-sm rounded-lg">
-            <thead>
-              <tr>
-                <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Title</th>
-                <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Type</th>
-                <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Min Donation</th>
-                <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Deadline</th>
-                <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Action</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-200">
-              {campaigns.map((campaign) => (
-                <tr
-                  key={campaign._id}
-                  className="hover:bg-teal-100 bg-white drop-shadow-md transition-colors duration-200"
-                >
-                  <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-                    {campaign.title}
-                  </td>
-                  <td className="whitespace-nowrap px-4 py-2 text-gray-700">{campaign.type}</td>
-                  <td className="whitespace-nowrap px-4 py-2 text-gray-700">
-                    ${campaign.minimumDonation}
-                  </td>
-                  <td className="whitespace-nowrap px-4 py-2 text-gray-700">
-                    {new Date(campaign.deadline).toLocaleDateString()}
-                  </td>
-                  <td className="whitespace-nowrap px-4 py-2 flex gap-2 justify-center">
-                    <button
-                      onClick={() => handleDelete(campaign._id)}
-                      className="inline-block rounded bg-red-500 px-4 py-2 text-xs font-medium text-white hover:bg-red-600"
-                    >
-                      Delete
+    <h1 className="text-2xl font-bold mb-6 text-center text-teal-700 dark:text-teal-400">
+      My Campaigns
+    </h1>
+    {campaigns.length === 0 ? (
+      <p className="text-center text-gray-500 dark:text-gray-300">
+        You have not added any campaigns yet.
+      </p>
+    ) : (
+      <div className="overflow-x-auto bg-gray-50 dark:bg-gray-800 p-4 rounded-lg shadow-lg">
+        <table className="min-w-full divide-y-2 divide-gray-200 dark:divide-gray-600 bg-white dark:bg-gray-700 text-sm rounded-lg">
+          <thead>
+            <tr>
+              <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-gray-200">
+                Title
+              </th>
+              <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-gray-200">
+                Type
+              </th>
+              <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-gray-200">
+                Min Donation
+              </th>
+              <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-gray-200">
+                Deadline
+              </th>
+              <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-gray-200">
+                Action
+              </th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-gray-200 dark:divide-gray-600">
+            {campaigns.map((campaign) => (
+              <tr
+                key={campaign._id}
+                className="hover:bg-teal-100 dark:hover:bg-teal-700 bg-white dark:bg-gray-800 drop-shadow-md transition-colors duration-200"
+              >
+                <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-gray-200">
+                  {campaign.title}
+                </td>
+                <td className="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-300">
+                  {campaign.type}
+                </td>
+                <td className="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-300">
+                  ${campaign.minimumDonation}
+                </td>
+                <td className="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-300">
+                  {new Date(campaign.deadline).toLocaleDateString()}
+                </td>
+                <td className="whitespace-nowrap px-4 py-2 flex gap-2 justify-center">
+                  <button
+                    onClick={() => handleDelete(campaign._id)}
+                    className="inline-block rounded bg-red-500 px-4 py-2 text-xs font-medium text-white hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700"
+                  >
+                    Delete
+                  </button>
+                  <Link to={`/updateCampaign/${campaign._id}`}>
+                    <button className="inline-block rounded bg-teal-500 px-4 py-2 text-xs font-medium text-white hover:bg-teal-600 dark:bg-teal-600 dark:hover:bg-teal-500">
+                      Update
                     </button>
-                    <Link to={`/updateCampaign/${campaign._id}`}>
-                      <button className="inline-block rounded bg-teal-500 px-4 py-2 text-xs font-medium text-white hover:bg-teal-600">
-                        Update
-                      </button>
-                    </Link>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
-    </div>
+                  </Link>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    )}
+  </div>
+  
   );
 };
 
