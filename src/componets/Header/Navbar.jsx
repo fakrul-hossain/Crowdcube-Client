@@ -35,185 +35,155 @@ const Navbar = () => {
   };
 
   const activeLink =
-    "text-teal-600 font-semibold border-b-2 border-teal-600 pb-1 transition-all ease-in-out duration-100 flex items-center gap-2";
+    "text-teal-600 font-semibold border-b-2 border-teal-600 pb-1 transition-all ease-in-out  flex items-center gap-2";
   const normalLink =
-    "text-gray-600 hover:text-teal-600 transition-all duration-300 flex items-center gap-2";
+    "text-gray-600 hover:text-teal-600 transition-all  flex items-center gap-2";
 
   return (
     <div
-      className={`bg-white shadow-md ${
-        isSticky ? "fixed top-0 w-full mx-auto ease-in-out z-50" : ""
-      }`}
-    >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <NavLink to="/" className="flex  justify-center items-center gap-2 text-xl font-bold text-teal-600">
-            <img src={logo} alt="Crowdcube Logo" className="h-12 w-12" />
-            <span className="hidden sm:inline">Crowdcube</span>
-
+    className={`bg-white shadow-md ${
+      isSticky ? "fixed top-0 w-full mx-auto ease-in-out z-50" : ""
+    }`}
+  >
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="flex items-center justify-between h-16">
+        {/* Logo */}
+        <NavLink to="/" className="flex items-center gap-2 text-xl font-bold text-teal-600">
+          <img src={logo} alt="Crowdcube Logo" className="h-12 w-12" />
+          <span className="hidden sm:inline">Crowdcube</span>
+        </NavLink>
+  
+        {/* Mobile Menu Toggle */}
+        <button
+          onClick={() => {
+            setIsMenuOpen(!isMenuOpen);
+            setIsProfileOpen(false); // Close profile if open
+          }}
+          className="md:hidden text-gray-600 hover:text-teal-600 text-2xl"
+        >
+          {isMenuOpen ? <MdCancel /> : <MdMenu />}
+        </button>
+  
+        {/* Desktop Menu */}
+        <nav className="hidden md:flex items-center gap-6">
+          <NavLink to="/" className={({ isActive }) => (isActive ? activeLink : normalLink)}>
+            <FaHome />
+            Home
           </NavLink>
-
-          {/* Desktop Menu */}
-          <nav className="hidden md:flex items-center gap-6">
+          <NavLink to="/campaigns" className={({ isActive }) => (isActive ? activeLink : normalLink)}>
+            <FaList />
+            All Campaigns
+          </NavLink>
+          {user && (
+            <>
+              <NavLink to="/addNewCampaign" className={({ isActive }) => (isActive ? activeLink : normalLink)}>
+                <FaPlus />
+                Add New Campaign
+              </NavLink>
+              <NavLink to="/myCampaigns" className={({ isActive }) => (isActive ? activeLink : normalLink)}>
+                <FaList />
+                My Campaigns
+              </NavLink>
+              <NavLink to="/myDonations" className={({ isActive }) => (isActive ? activeLink : normalLink)}>
+                <FaDonate />
+                My Donations
+              </NavLink>
+            </>
+          )}
+        </nav>
+  
+        {/* Auth Section */}
+        <div className="flex items-center gap-4">
+          {user ? (
+            <div className="relative">
+              {/* User Photo */}
+              <img
+                src={user.photoURL || "https://via.placeholder.com/40"}
+                alt="User Profile"
+                className="h-10 w-10 rounded-full cursor-pointer"
+                title={user.displayName || "User"}
+                onClick={() => {
+                  setIsProfileOpen(!isProfileOpen);
+                  setIsMenuOpen(false); // Close menu if open
+                }}
+              />
+              {/* Dropdown Menu */}
+              {isProfileOpen && (
+                <div className="absolute p-4 right-0 z-50 mt-2 w-64 bg-white border rounded shadow-lg">
+                  <div className="">
+                    <p className="text-gray-700 font-medium mb-2">{user.displayName}</p>
+                  </div>
+                  <hr />
+                  <button
+                    onClick={handleLogOut}
+                    className="block w-full text-left text-sm font-bold bg-amber-400 text-white px-4 py-2 rounded-md hover:bg-amber-500 transition-colors duration-200"
+                  >
+                    Log out
+                  </button>
+                </div>
+              )}
+            </div>
+          ) : (
+            <div className="flex gap-3">
+              <NavLink to="/login" className={({ isActive }) => (isActive ? activeLink : normalLink)}>
+                <FaSignInAlt />
+                Login
+              </NavLink>
+              <NavLink to="/register" className={({ isActive }) => (isActive ? activeLink : normalLink)}>
+                <FaUserPlus />
+                Register
+              </NavLink>
+            </div>
+          )}
+        </div>
+      </div>
+  
+      {/* Mobile Menu */}
+      {isMenuOpen && (
+        <div className="md:hidden bg-white border-t mt-2">
+          <nav className="flex flex-col gap-2 p-4">
             <NavLink to="/" className={({ isActive }) => (isActive ? activeLink : normalLink)}>
               <FaHome />
               Home
             </NavLink>
-            <NavLink
-              to="/campaigns"
-              className={({ isActive }) => (isActive ? activeLink : normalLink)}
-            >
+            <NavLink to="/campaigns" className={({ isActive }) => (isActive ? activeLink : normalLink)}>
               <FaList />
               All Campaigns
             </NavLink>
             {user && (
               <>
-                <NavLink
-                  to="/addNewCampaign"
-                  className={({ isActive }) => (isActive ? activeLink : normalLink)}
-                >
+                <NavLink to="/addNewCampaign" className={({ isActive }) => (isActive ? activeLink : normalLink)}>
                   <FaPlus />
                   Add New Campaign
                 </NavLink>
-                <NavLink
-                  to="/myCampaigns"
-                  className={({ isActive }) => (isActive ? activeLink : normalLink)}
-                >
+                <NavLink to="/myCampaigns" className={({ isActive }) => (isActive ? activeLink : normalLink)}>
                   <FaList />
                   My Campaigns
                 </NavLink>
-                <NavLink
-                  to="/myDonations"
-                  className={({ isActive }) => (isActive ? activeLink : normalLink)}
-                >
+                <NavLink to="/myDonations" className={({ isActive }) => (isActive ? activeLink : normalLink)}>
                   <FaDonate />
                   My Donations
                 </NavLink>
               </>
             )}
-          </nav>
-
-          {/* Auth Section */}
-          <div className="flex items-center gap-4">
-            {user ? (
-              <div className="relative">
-                {/* User Photo */}
-                <img
-                  src={user.photoURL || "https://via.placeholder.com/40"}
-                  alt="User Profile"
-                  className="h-10 w-10 rounded-full cursor-pointer"
-                  title={user.displayName || "User"}
-                  onClick={() => {
-                    setIsProfileOpen(!isProfileOpen);
-                    setIsMenuOpen(false); // Close menu if open
-                  }}
-                />
-                {/* Dropdown Menu */}
-                {isProfileOpen && (
-                  <div className="absolute right-0 z-50 mt-2 w-48 bg-white border rounded shadow-lg">
-                    <div className="p-2">
-                      <p className="text-gray-700 text-sm">{user.displayName}</p>
-                    </div>
-                    <hr />
-                    <button
-                      onClick={handleLogOut}
-                      className="block w-full px-4 py-2 text-left text-sm text-red-600 hover:bg-red-100"
-                    >
-                      Log out
-                    </button>
-                  </div>
-                )}
-              </div>
-            ) : (
-              <div className="flex gap-3">
-                <NavLink
-                  to="/login"
-                  className={({ isActive }) => (isActive ? activeLink : normalLink)}
-                >
+            {!user && (
+              <>
+                <NavLink to="/login" className={({ isActive }) => (isActive ? activeLink : normalLink)}>
                   <FaSignInAlt />
                   Login
                 </NavLink>
-                <NavLink
-                  to="/register"
-                  className={({ isActive }) => (isActive ? activeLink : normalLink)}
-                >
+                <NavLink to="/register" className={({ isActive }) => (isActive ? activeLink : normalLink)}>
                   <FaUserPlus />
                   Register
                 </NavLink>
-              </div>
+              </>
             )}
-          </div>
-
-          {/* Mobile Menu Toggle */}
-          <button
-            onClick={() => {
-              setIsMenuOpen(!isMenuOpen);
-              setIsProfileOpen(false); // Close profile if open
-            }}
-            className="md:hidden text-gray-600 hover:text-teal-600 text-2xl"
-          >
-            {isMenuOpen ? <MdCancel /> : <MdMenu />}
-          </button>
+          </nav>
         </div>
-
-        {/* Mobile Menu */}
-        {isMenuOpen && (
-          <div className="md:hidden bg-white border-t mt-2">
-            <nav className="flex flex-col gap-2 p-4">
-              <NavLink to="/" className={({ isActive }) => (isActive ? activeLink : normalLink)}>
-                <FaHome />
-                Home
-              </NavLink>
-              <NavLink
-                to="/campaigns"
-                className={({ isActive }) => (isActive ? activeLink : normalLink)}
-              >
-                <FaList />
-                All Campaigns
-              </NavLink>
-              {user && (
-                <>
-                  <NavLink
-                    to="/addNewCampaign"
-                    className={({ isActive }) => (isActive ? activeLink : normalLink)}
-                  >
-                    <FaPlus />
-                    Add New Campaign
-                  </NavLink>
-                  <NavLink
-                    to="/myCampaigns"
-                    className={({ isActive }) => (isActive ? activeLink : normalLink)}
-                  >
-                    <FaList />
-                    My Campaigns
-                  </NavLink>
-                  <NavLink
-                    to="/myDonations"
-                    className={({ isActive }) => (isActive ? activeLink : normalLink)}
-                  >
-                    <FaDonate />
-                    My Donations
-                  </NavLink>
-                </>
-              )}
-              {!user && (
-                <>
-                  <NavLink to="/login" className={({ isActive }) => (isActive ? activeLink : normalLink)}>
-                    <FaSignInAlt />
-                    Login
-                  </NavLink>
-                  <NavLink to="/register" className={({ isActive }) => (isActive ? activeLink : normalLink)}>
-                    <FaUserPlus />
-                    Register
-                  </NavLink>
-                </>
-              )}
-            </nav>
-          </div>
-        )}
-      </div>
+      )}
     </div>
+  </div>
+  
   );
 };
 

@@ -1,16 +1,28 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLoaderData, useNavigate } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
+import { FaSortAmountUp, FaSortAmountDown } from "react-icons/fa";
 
 const AllCampaign = () => {
   const campaigns = useLoaderData(); // Use loaded data directly
+  const [sortedCampaigns, setSortedCampaigns] = useState([]);
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
+  const [sortOrder, setSortOrder] = useState("asc"); // Ascending by default
 
-  // Simulating loading state for better UX
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 1000); // 1 second delay
-    return () => clearTimeout(timer); // Cleanup timer on component unmount
-  }, []);
+    setSortedCampaigns([...campaigns]); // Initialize with loaded campaigns
+    setLoading(false); // Simulating loading state for better UX
+  }, [campaigns]);
+
+  const handleSort = () => {
+    const newOrder = sortOrder === "asc" ? "desc" : "asc";
+    const sorted = [...sortedCampaigns].sort((a, b) => {
+      return newOrder === "asc"
+        ? a.minimumDonation - b.minimumDonation
+        : b.minimumDonation - a.minimumDonation;
+    });
+    setSortedCampaigns(sorted);
+    setSortOrder(newOrder);
+  };
 
   if (loading) {
     return (
@@ -25,8 +37,23 @@ const AllCampaign = () => {
       <h1 className="text-2xl font-bold mb-6 text-center text-teal-700">
         All Campaigns
       </h1>
+
+      <div className="flex justify-end mb-4">
+        <button
+          onClick={handleSort}
+          className="flex items-center font-semibold bg-amber-400 text-white px-4 py-2 rounded-md hover:bg-amber-500 transition-colors duration-200"
+        >
+          {sortOrder === "asc" ? (
+            <FaSortAmountUp className="mr-2" />
+          ) : (
+            <FaSortAmountDown className="mr-2" />
+          )}
+          Sort by Min Donation
+        </button>
+      </div>
+
       <div className="overflow-x-auto bg-gray-50 p-4 rounded-lg shadow-lg">
-        <table className="min-w-full  divide-y-2 divide-gray-200 bg-white text-sm rounded-lg">
+        <table className="min-w-full divide-y-2 divide-gray-200 bg-white text-sm rounded-lg">
           <thead className="ltr:text-left rtl:text-right">
             <tr>
               <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Title</th>
@@ -37,7 +64,7 @@ const AllCampaign = () => {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200">
-            {campaigns.map((campaign) => (
+            {sortedCampaigns.map((campaign) => (
               <tr
                 key={campaign._id}
                 className="hover:bg-teal-100 bg-white drop-shadow-md transition-colors duration-200"
@@ -56,12 +83,9 @@ const AllCampaign = () => {
                 </td>
                 <td className="whitespace-nowrap px-4 py-2">
                   <Link to={`/campaignDetails/${campaign._id}`}>
-                  <button
-                    // onClick={() => navigate(`/campaign/${campaign._id}`)}
-                    className="inline-block rounded bg-teal-600 px-4 py-2 text-xs font-medium text-white hover:bg-teal-700"
-                  >
-                    See More
-                  </button>
+                    <button className="inline-block rounded bg-teal-600 px-4 py-2 text-xs font-medium text-white hover:bg-teal-700">
+                      See More
+                    </button>
                   </Link>
                 </td>
               </tr>
