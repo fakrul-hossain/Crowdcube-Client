@@ -31,18 +31,18 @@ const myCreateRoute = createBrowserRouter([
       {
         path: "/campaigns",
         element: <AllCampaign/>,
-        loader: ()=> fetch('http://localhost:5000/campaigns')
+        loader: ()=> fetch('https://crowdcube-server-xi.vercel.app/campaigns')
       },
         {
           path: "/campaignDetails/:id",
           element: <PrivateRoute><CampaignDetails /></PrivateRoute>,
-          loader: ({params})=> fetch(`http://localhost:5000/campaigns/${params.id}`)
+          loader: ({params})=> fetch(`https://crowdcube-server-xi.vercel.app/campaigns/${params.id}`)
         }
       ,
         {
           path: "/updateCampaign/:id",
           element: <PrivateRoute><UpdateCampaign /></PrivateRoute>,
-          loader: ({params})=> fetch(`http://localhost:5000/campaigns/${params.id}`)
+          loader: ({params})=> fetch(`https://crowdcube-server-xi.vercel.app/campaigns/${params.id}`)
         }
       ,
       {

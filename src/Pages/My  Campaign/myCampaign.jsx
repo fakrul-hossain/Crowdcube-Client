@@ -12,7 +12,7 @@ const MyCampaign = () => {
   // Fetch user's campaigns
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:5000/campaigns?email=${user.email}`)
+      fetch(`https://crowdcube-server-xi.vercel.app/campaigns?email=${user.email}`)
         .then((res) => {
           if (!res.ok) {
             throw new Error("Failed to fetch campaigns");
@@ -43,7 +43,7 @@ const MyCampaign = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/campaigns/${id}`, {
+        fetch(`https://crowdcube-server-xi.vercel.app/campaigns/${id}`, {
           method: "DELETE",
         })
           .then((res) => {

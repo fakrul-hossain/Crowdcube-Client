@@ -5,7 +5,7 @@ export  const useTheme = () =>{
     const [mode,setMode] = useState('light')
 
     function ChangeTheme() {
-        console.log('object');
+   
         const html = document.documentElement;
         if (mode == 'light') {
             html.classList.remove('light')

@@ -26,7 +26,7 @@ const LogIn = () => {
           "success"
         );
         e.target.reset();
-        navigate("/donationCampaign");
+        navigate("/");
       })
       .catch(() => {
         Swal.fire(

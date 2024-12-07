@@ -30,7 +30,7 @@ const AddNewCampaign = () => {
       userName: user?.displayName || "Anonymous",
     };
 
-    fetch("http://localhost:5000/campaigns", {
+    fetch("https://crowdcube-server-xi.vercel.app/campaigns", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

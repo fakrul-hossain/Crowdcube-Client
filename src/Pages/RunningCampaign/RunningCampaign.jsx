@@ -9,7 +9,7 @@ const RunningCampaign = () => {
 
   // Fetch running campaigns from the database
   useEffect(() => {
-    fetch("http://localhost:5000/campaigns") // Replace with your API endpoint
+    fetch("https://crowdcube-server-xi.vercel.app/campaigns") // Replace with your API endpoint
       .then((response) => response.json())
       .then((data) => {
         const currentDate = new Date();

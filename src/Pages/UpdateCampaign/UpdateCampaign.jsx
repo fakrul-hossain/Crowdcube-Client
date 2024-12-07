@@ -31,7 +31,7 @@ const UpdateCampaign = () => {
     e.preventDefault();
 
     // Send updated data to the server
-    fetch(`http://localhost:5000/campaigns/${updateCampaign._id}`, {
+    fetch(`https://crowdcube-server-xi.vercel.app/campaigns/${updateCampaign._id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
