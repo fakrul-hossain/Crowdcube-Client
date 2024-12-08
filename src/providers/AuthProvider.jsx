@@ -47,7 +47,7 @@ const googleProvider = new GoogleAuthProvider()
    useEffect(()=>{
     const unSubscribe = onAuthStateChanged(auth,createUser =>{
         
-        console.log('current user value of the current user.',createUser);
+        // console.log('current user value of the current user.',createUser);
         setUser(createUser)
         setLoading(false);
     });

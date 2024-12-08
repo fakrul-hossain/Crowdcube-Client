@@ -17,7 +17,7 @@ const AddNewCampaign = () => {
     const deadline = form.deadline.value;
     const image = form.image.value;
     const description = form.description.value;
-    const email = user?.email || "N/A";
+    const userEmail = user?.email || "N/A";
     const userName = user?.displayName || "Anonymous";
 
     const newCampaign = {
@@ -27,7 +27,7 @@ const AddNewCampaign = () => {
       deadline,
       image,
       description,
-      email,
+      userEmail,
       userName,
     };
     console.log(newCampaign);
