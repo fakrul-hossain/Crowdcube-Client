@@ -18,5 +18,5 @@ Crowdcube is a dynamic and secure crowdfunding platform designed to connect crea
 ## How to Get Started  
 1. Clone the repository.  
    ```bash
-   git clone https://github.com/programming-hero-web-course2/b10-a10-server-side-fakrul-hossain
+   git clone https://github.com/fakrul-hossain/Crowdcube-Client
 "# Crowdcube-Client" 
